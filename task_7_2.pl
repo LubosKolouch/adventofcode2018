@@ -5,13 +5,13 @@
 #
 #        USAGE: ./t7.pl
 #
-#  DESCRIPTION:
+#  DESCRIPTION: Solution for https://adventofcode.com/2018/day/7 part 2
 #
 #      OPTIONS: ---
 # REQUIREMENTS: ---
 #         BUGS: ---
 #        NOTES: ---
-#       AUTHOR: YOUR NAME (),
+#       AUTHOR: Lubos Kolouch
 # ORGANIZATION:
 #      VERSION: 1.0
 #      CREATED: 12/07/2018 08:43:41 AM

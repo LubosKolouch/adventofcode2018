@@ -84,12 +84,6 @@ class Computer:
 
 known_opcodes = defaultdict(int)
 
-#opcodes = {'addr': addr,  'addi': addi, 'mulr': mulr, 'muli': muli,
-#           'banr': banr,  'bani': bani, 'borr': borr, 'bori': bori,
-#           'setr': setr,  'seti': seti,
-#           'gtir': gtir,  'gtri': gtri, 'gtrr': gtrr,
-#           'eqir': eqir,  'eqri': eqri, 'eqrr': eqrr}
-
 opcodes = ["addr","addi","mulr","muli","banr","bani","borr","bori","setr","seti","gtir","gtri","gtrr","eqir","eqri","eqrr"]
 
 assert len(sys.argv) == 2

@@ -187,7 +187,7 @@ def print_grid():
 
 assert len(sys.argv) == 2
 
-for attack_power in range(4,100):
+for attack_power in range(20,100):
     inp = open(sys.argv[1]).read().split('\n')
 
     b = Battle(inp,attack_power)
@@ -203,8 +203,6 @@ for attack_power in range(4,100):
         print_grid()
 
 
-        if b.rounds == 10:
-            input()
         b.still_to_play = copy(b.units)
         b.units_played = 0
 

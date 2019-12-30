@@ -30,7 +30,7 @@ class Battle(object):
             for y, what in enumerate(row):
 
                 if what == 'E' or what =='G':
-                    my_unit = Unit((x,y),what,self.elf_power)
+                    my_unit = Unit(what,(x,y),self.elf_power)
                     self.units.append(my_unit)
                     self.units_armies[what].append(my_unit)
 
@@ -79,10 +79,6 @@ def attack(unit,target):
         b.units.remove(target)
         b.units_armies[target.type].remove(target)
 
-        if target.type == "E":
-            print("Elf died...")
-            b.elf_died == 1
-            b.finished = 1
         #:input()
 
     return 1
@@ -187,63 +183,62 @@ def print_grid():
 
 assert len(sys.argv) == 2
 
-for attack_power in range(20,100):
-    inp = open(sys.argv[1]).read().split('\n')
+inp = open(sys.argv[1]).read().split('\n')
 
-    b = Battle(inp,attack_power)
+b = Battle(inp,3)
 
-    print("attack power ",b.elf_power)
+print("attack power ",b.elf_power)
 
-    while b.finished == 0:
-        b.rounds += 1
-        print("Round : ",b.rounds)
+while b.finished == 0:
+    b.rounds += 1
+    print("Round : ",b.rounds)
 
-        # process units
-        b.units.sort( key=lambda a: a.pos)
-        print_grid()
+    # process units
+    b.units.sort( key=lambda a: a.pos)
+    print_grid()
 
 
-        b.still_to_play = copy(b.units)
-        b.units_played = 0
+    b.still_to_play = copy(b.units)
+    b.units_played = 0
 
-        # for finding if round is finished
+    # for finding if round is finished
 
-        for unit in b.still_to_play:
-            b.units_played += 1
-        
-        #print("**** UNIT ****")
-        #print(unit)
-        #print(b.still_to_play)
+    for unit in b.still_to_play:
+        b.units_played += 1
+    
+    #print("**** UNIT ****")
+    #print(unit)
+    #print(b.still_to_play)
 
-            if unit not in b.units:
+        if unit not in b.units:
 #            print("Already killed unit at ",unit.pos)
-            # the unit has been killed in between
-                continue
+        # the unit has been killed in between
+            continue
 
 #        print("--- PROCESSING ----")
- #       print(unit.__dict__)
-            target, path = find_enemy(unit)
+#       print(unit.__dict__)
+        target, path = find_enemy(unit)
 
 #        print("target : ",target)
 
-            if path is None:
-                continue
+        if path is None:
+            continue
 
+        if len(path) == 2:
+            attack(unit, target)
+            check_if_done()
+
+        else:
+            b.grid[unit.pos[0]][unit.pos[1]] = '.'
+            b.grid[path[1][0]][path[1][1]] = unit.type
+
+            unit.pos = path[1]
+            #attack after move
+            target, path = find_enemy(unit)
             if len(path) == 2:
-                attack(unit, target)
+                attack(unit,target)
+                #print("1")
                 check_if_done()
 
-            else:
-                b.grid[unit.pos[0]][unit.pos[1]] = '.'
-                b.grid[path[1][0]][path[1][1]] = unit.type
-
-                unit.pos = path[1]
-                #attack after move
-                target, path = find_enemy(unit)
-                if len(path) == 2:
-                    attack(unit,target)
-                    #print("1")
-                    check_if_done()
-
-        check_if_done()
-    #input()
+    check_if_done()
+#input()

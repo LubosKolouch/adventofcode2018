@@ -3,17 +3,13 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Unit(object):
+class Unit:
     type: str
     pos: tuple
-    attack_power: int
-    enemy_type: str
+    apower: int
     health: int = 200
 
-    def __init__(self, pos, unit_type, attack_power=3):
-
-        self.pos = pos
-        self.type = unit_type
+    def __post_init__(self):
 
         types = ["E","G"]
         types.remove(self.type)
@@ -22,7 +18,7 @@ class Unit(object):
         self.attack_q = deque()
         self.health = 200
         if self.type == "E":
-            self.attack_power = attack_power
+            self.attack_power = self.apower
         else:
             self.attack_power = 3
 

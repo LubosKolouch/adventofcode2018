@@ -30,7 +30,7 @@ class Battle(object):
             for y, what in enumerate(row):
 
                 if what == 'E' or what =='G':
-                    my_unit = Unit((x,y),what,self.elf_power)
+                    my_unit = Unit(what,(x,y),self.elf_power)
                     self.units.append(my_unit)
                     self.units_armies[what].append(my_unit)
 

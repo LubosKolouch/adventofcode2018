@@ -11,7 +11,7 @@ from copy import copy
 
 class Battle(object):
 
-    def __post_init__(self, inp, elf_power):
+    def __init__(self, inp, elf_power):
         self.grid = []
 #        for line in inp:
 #            self.grid.append(list(map(str,line)))

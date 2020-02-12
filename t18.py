@@ -61,6 +61,7 @@ class Lumber_collector:
                 for b in [-1, 0, 1]:
                     if a == b == 0:
                         continue
+
                     if field_c.get((x+a, y+b), '') == '|':
                         tree_count += 1
 
